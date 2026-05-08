@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>To My Queen — A Petition for Grace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noble-bg:#1a0f1f;
+    --noble-900:#2a1830;
+    --noble-800:#3a2240;
+    --gold-400:#e6c558;
+    --gold-500:#d4af37;
+    --creme:#f5e9d4;
+    --blush:#f7c6c7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--noble-bg);color:var(--creme);font-family:'Cormorant Garamond',serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;background:radial-gradient(ellipse at top,#3a1a3a 0%,var(--noble-bg) 60%)}
+  ::selection{background:rgba(212,175,55,.3)}
+  .font-display{font-family:'Cinzel',serif}
+  .font-sans{font-family:'Inter',sans-serif}
+  .gold{color:var(--gold-400)}
+  .blush{color:var(--blush)}
+  main{position:relative;overflow:hidden;min-height:100vh;padding-bottom:5rem}
+  article{max-width:48rem;margin:0 auto;padding:6rem 1.5rem 0;position:relative;z-index:10}
+  header{text-align:center;margin-bottom:5rem}
+  .eyebrow{display:flex;justify-content:center;align-items:center;gap:1rem;margin-bottom:1.5rem;color:var(--gold-400)}
+  .eyebrow h2{font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.3em;font-size:.85rem;color:var(--gold-500);font-weight:600}
+  h1.title{font-family:'Cinzel',serif;font-size:clamp(3rem,8vw,5rem);color:var(--gold-400);margin-bottom:2rem;line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.5)}
+  .sub{font-size:clamp(1.3rem,3vw,1.875rem);color:var(--blush);font-style:italic;font-weight:300}
+  .sections{display:flex;flex-direction:column;gap:4rem;font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.7;color:rgba(245,233,212,.9)}
+  section{text-align:center}
+  section p{margin-bottom:1.25rem}
+  section.italic p{font-style:italic}
+  .label{color:var(--gold-400);font-family:'Cinzel',serif;font-size:1.5rem;margin-bottom:1.5rem;display:block}
+  .image-card{position:relative;height:clamp(20rem,50vw,28rem);width:100%;border-radius:1rem;overflow:hidden;border:1px solid rgba(212,175,55,.2);box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+  .image-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .image-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(42,24,48,.85),transparent 60%)}
+  .image-card .caption{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;text-align:center;color:var(--blush);font-style:italic;font-size:1.125rem}
+  .cta{margin-top:8rem;text-align:center}
+  .cta h3{font-family:'Cinzel',serif;font-size:clamp(1.75rem,4vw,2.5rem);color:var(--gold-400);margin-bottom:3rem}
+  .btns{position:relative;height:10rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+  button{font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.15em;padding:1rem 2.5rem;border-radius:9999px;border:none;cursor:pointer;font-size:.875rem;transition:transform .2s,box-shadow .3s}
+  .btn-yes{background:var(--gold-500);color:#2a1830;box-shadow:0 0 30px rgba(212,175,55,.4)}
+  .btn-yes:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(212,175,55,.6)}
+  .btn-no{background:var(--noble-800);color:rgba(245,233,212,.6);border:1px solid rgba(245,233,212,.2);transition:left .3s ease,top .3s ease,background .3s}
+  .btn-no:hover{background:var(--noble-900)}
+  .btn-no.runaway{position:absolute;transition:left .25s,top .25s}
+  /* petals */
+  .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;opacity:.4}
+  .petal{position:absolute;top:-3rem;font-size:1.5rem;animation:fall linear infinite;will-change:transform}
+  @keyframes fall{
+    0%{transform:translate(0,-10vh) rotate(0deg)}
+    100%{transform:translate(var(--drift,0px),110vh) rotate(360deg)}
+  }
+  /* forgiven screen */
+  .forgiven{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:1.5rem;position:relative;overflow:hidden}
+  .forgiven.active{display:flex}
+  .main-letter.hidden{display:none}
+  .forgive-card{position:relative;z-index:10;background:rgba(42,24,48,.4);backdrop-filter:blur(12px);padding:clamp(2rem,5vw,4rem);border-radius:1.5rem;border:1px solid rgba(212,175,55,.3);box-shadow:0 25px 50px -12px rgba(0,0,0,.6);max-width:42rem;width:100%;animation:popin 1s ease}
+  @keyframes popin{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+  .heart{width:4rem;height:4rem;margin:0 auto 1.5rem;color:var(--gold-400)}
+  .forgive-card h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3rem);color:var(--gold-400);margin-bottom:1.5rem}
+  .forgive-card p{font-size:1.25rem;color:rgba(245,233,212,.9);font-style:italic;line-height:1.7;margin-bottom:2rem}
+  .bouncers{display:flex;justify-content:center;gap:1rem;font-size:2.5rem}
+  .bouncers span{animation:bounce 1s infinite}
+  .bouncers span:nth-child(2){animation-delay:.2s}
+  .bouncers span:nth-child(3){animation-delay:.4s}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+  /* fade-in on view */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .icon{width:1.5rem;height:1.5rem;display:inline-block;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<main id="letter" class="main-letter">
+  <article>
+    <header class="reveal in">
+      <div class="eyebrow">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/></svg>
+        <h2>A Petition for Grace</h2>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/></svg>
+      </div>
+      <h1 class="title">To My Queen</h1>
+      <p class="sub">From a foolish, yet deeply devoted, Persian Noble.</p>
+    </header>
+
+    <div class="sections">
+      <section class="italic reveal">
+        <p>O Light of my Eyes,</p>
+        <p>I come before you today with my head bowed, stripped of all pride and artifice. Like a moth drawn endlessly to the brightest flame, my longing for your presence led my judgment astray.</p>
+      </section>
+
+      <div class="image-card reveal">
+        <img src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?q=80&w=1000&auto=format&fit=crop" alt="Deep red roses"/>
+        <div class="overlay"></div>
+        <div class="caption">"Roses as red as the blood that beats in my heart for you."</div>
+      </div>
+
+      <section class="reveal">
+        <span class="label">The Confession</span>
+        <p>In my desperate eagerness to be near you, to bask in the warmth of your words without revealing the extent of my own vulnerability, I donned a mask. I spoke to you through the guise of another—my friend's account.</p>
+        <p>It was a deception. But I swear upon the stars that blanket the night sky over Shiraz, it was not born of malice, nor a desire to deceive your noble heart. It was born only of a cowardly, foolish reverence. I was terrified that my own self was not spectacular enough to hold your royal attention.</p>
+      </section>
+
+      <div class="image-card reveal">
+        <img src="https://images.unsplash.com/photo-1522748906645-95d8ad052cb8?q=80&w=1000&auto=format&fit=crop" alt="Beautiful tulips"/>
+        <div class="overlay"></div>
+        <div class="caption">"Tulips, a symbol of perfect, enduring love laid at your feet."</div>
+      </div>
+
+      <section class="reveal">
+        <p>I lay these roses and tulips at your feet. An offering of my sincerity. I promise, by all that is sacred, to never hide behind another's shadow again. You deserve a lover who stands in the light, unashamed of his devotion.</p>
+      </section>
+    </div>
+
+    <div class="cta reveal">
+      <h3>Can your royal heart find it within to forgive me?</h3>
+      <div class="btns" id="btns">
+        <button class="btn-yes" id="yesBtn">I Forgive You</button>
+        <button class="btn-no" id="noBtn">No, I'm Mad</button>
+      </div>
+    </div>
+  </article>
+</main>
+
+<section class="forgiven" id="forgiven">
+  <div class="forgive-card">
+    <svg class="heart" viewBox="0 0 24 24" fill="rgba(230,197,88,.2)" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    <h1>My Queen is Merciful</h1>
+    <p>"Your forgiveness is the gentle rain upon the parched gardens of my soul. From this day forward, I vow to speak to you only in my true voice, for no disguise could ever be worthy of your grace."</p>
+    <div class="bouncers"><span>🌹</span><span>🌷</span><span>🌹</span></div>
+  </div>
+</section>
+
+<script>
+  // Petals
+  const FLOWERS = ['🌹','🌷','🌹','🪷','🌷'];
+  const petalsEl = document.getElementById('petals');
+  for(let i=0;i<25;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = FLOWERS[Math.floor(Math.random()*FLOWERS.length)];
+    p.style.left = Math.random()*100 + '%';
+    const dur = 15 + Math.random()*20;
+    p.style.animationDuration = dur + 's';
+    p.style.animationDelay = (-Math.random()*dur) + 's';
+    p.style.setProperty('--drift', (Math.sin(i)*100) + 'px');
+    petalsEl.appendChild(p);
+  }
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{rootMargin:'-80px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Forgive
+  document.getElementById('yesBtn').addEventListener('click',()=>{
+    document.getElementById('letter').classList.add('hidden');
+    document.getElementById('forgiven').classList.add('active');
+    window.scrollTo(0,0);
+  });
+
+  // Runaway "No" button
+  const noBtn = document.getElementById('noBtn');
+  const btns = document.getElementById('btns');
+  let count = 0;
+  function flee(){
+    count++;
+    noBtn.classList.add('runaway');
+    const w = btns.clientWidth, h = btns.clientHeight;
+    const bw = noBtn.offsetWidth, bh = noBtn.offsetHeight;
+    const left = Math.max(0, Math.min(w - bw, Math.random()*(w-bw)));
+    const top = Math.max(0, Math.min(h - bh, Math.random()*(h-bh)));
+    noBtn.style.left = left + 'px';
+    noBtn.style.top = top + 'px';
+  }
+  noBtn.addEventListener('mouseenter', flee);
+  noBtn.addEventListener('touchstart', flee, {passive:true});
+  noBtn.addEventListener('click', flee);
+</script>
+
+</body>
+</html>
